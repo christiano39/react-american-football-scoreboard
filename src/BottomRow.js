@@ -5,16 +5,13 @@ const BottomRow = (props) => {
   return (
     <div className="bottomRow">
       <Down down={props.down} changeDown={props.changeDown} />
-      {/* <div className="toGo">
-        <h3 className="toGo__title">To Go</h3>
-        <div className="toGo__value">7</div>
-      </div> */}
-      <ToGo toGo={props.toGo} changeToGo={props.changeToGo}/>
-      <div className="ballOn">
+      <ToGo toGo={props.toGo} changeToGo={props.changeToGo} />
+      {/* <div className="ballOn">
         <h3 className="ballOn__title">Ball on</h3>
         <div className="ballOn__value">21</div>
-      </div>
-      <Quarter quarter={props.quarter} changeQuarter={props.changeQuarter}/>
+      </div> */}
+      <BallOn ballOn={props.ballOn} changeBallOn={props.changeBallOn} />
+      <Quarter quarter={props.quarter} changeQuarter={props.changeQuarter} />
     </div>
   );
 };
@@ -56,6 +53,20 @@ function ToGo(props){
       <div className="toGo__buttons">
         <button className="toGo__up" onClick={() => changeToGo(true)}>+</button>
         <button className="toGo__toGo" onClick={() => changeToGo(false)}>-</button>
+      </div>
+    </div>
+  )
+}
+
+function BallOn(props){
+  const { ballOn, changeBallOn } = props
+  return (
+    <div className="ballOn">
+      <h3 className="ballOn__title">Ball On</h3>
+      <div className="ballOn__value">{ballOn}</div>
+      <div className="ballOn__buttons">
+        <button className="ballOn__up" onClick={() => changeBallOn(true)}>+</button>
+        <button className="ballOn__ballOn" onClick={() => changeBallOn(false)}>-</button>
       </div>
     </div>
   )
