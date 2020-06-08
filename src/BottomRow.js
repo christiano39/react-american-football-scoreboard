@@ -5,10 +5,11 @@ const BottomRow = (props) => {
   return (
     <div className="bottomRow">
       <Down down={props.down} changeDown={props.changeDown} />
-      <div className="toGo">
+      {/* <div className="toGo">
         <h3 className="toGo__title">To Go</h3>
         <div className="toGo__value">7</div>
-      </div>
+      </div> */}
+      <ToGo toGo={props.toGo} changeToGo={props.changeToGo}/>
       <div className="ballOn">
         <h3 className="ballOn__title">Ball on</h3>
         <div className="ballOn__value">21</div>
@@ -32,7 +33,7 @@ function Quarter(props){
   )
 }
 
-function Down(props) {
+function Down(props){
   const { down, changeDown } = props
   return (
     <div className="down">
@@ -41,6 +42,20 @@ function Down(props) {
       <div className="down__buttons">
         <button className="down__up" onClick={() => changeDown(true)}>+</button>
         <button className="down__down" onClick={() => changeDown(false)}>-</button>
+      </div>
+    </div>
+  )
+}
+
+function ToGo(props){
+  const { toGo, changeToGo } = props
+  return (
+    <div className="toGo">
+      <h3 className="toGo__title">To Go</h3>
+      <div className="toGo__value">{toGo}</div>
+      <div className="toGo__buttons">
+        <button className="toGo__up" onClick={() => changeToGo(true)}>+</button>
+        <button className="toGo__toGo" onClick={() => changeToGo(false)}>-</button>
       </div>
     </div>
   )
