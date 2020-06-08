@@ -4,10 +4,7 @@ import "./App.css";
 const BottomRow = (props) => {
   return (
     <div className="bottomRow">
-      <div className="down">
-        <h3 className="down__title">Down</h3>
-        <div className="down__value">3</div>
-      </div>
+      <Down down={props.down} changeDown={props.changeDown} />
       <div className="toGo">
         <h3 className="toGo__title">To Go</h3>
         <div className="toGo__value">7</div>
@@ -22,14 +19,28 @@ const BottomRow = (props) => {
 };
 
 function Quarter(props){
-  const { quarter } = props
+  const { quarter, changeQuarter } = props
   return (
     <div className="quarter">
       <h3 className="quarter__title">Quarter</h3>
       <div className="quarter__value">{quarter}</div>
       <div className="quarter__buttons">
-        <button className="quarter__up" onClick={() => props.changeQuarter(true)}>+</button>
-        <button className="quarter__down" onClick={() => props.changeQuarter(false)}>-</button>
+        <button className="quarter__up" onClick={() => changeQuarter(true)}>+</button>
+        <button className="quarter__down" onClick={() => changeQuarter(false)}>-</button>
+      </div>
+    </div>
+  )
+}
+
+function Down(props) {
+  const { down, changeDown } = props
+  return (
+    <div className="down">
+      <h3 className="down__title">Down</h3>
+      <div className="down__value">{down}</div>
+      <div className="down__buttons">
+        <button className="down__up" onClick={() => changeDown(true)}>+</button>
+        <button className="down__down" onClick={() => changeDown(false)}>-</button>
       </div>
     </div>
   )

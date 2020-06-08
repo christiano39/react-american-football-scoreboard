@@ -10,6 +10,7 @@ function App() {
   const [homeScore, setHomeScore] = useState(0)
   const [awayScore, setAwayScore] = useState(0)
   const [quarter, setQuarter] = useState(1)
+  const [down, setDown] = useState(1)
   const homeTeam = "Colts"
   const awayTeam = "Broncos"
 
@@ -17,11 +18,17 @@ function App() {
     isHome ? setHomeScore(homeScore + amount) : setAwayScore(awayScore + amount)
   }
   const changeQuarter = (bool) => {
-    // bool ? setQuarter(quarter + 1) : setQuarter(quarter - 1)
     if (bool && quarter < 4){
       setQuarter(quarter + 1)
     }else if (!bool && quarter > 1){
       setQuarter(quarter - 1)
+    }
+  }
+  const changeDown = (bool) => {
+    if (bool && down < 4){
+      setDown(down + 1)
+    }else if (!bool && down > 1){
+      setDown(down - 1)
     }
   }
 
@@ -33,7 +40,7 @@ function App() {
           <Timer />
           <TeamName isHome={false} name={awayTeam} homeScore={homeScore} awayScore={awayScore} />
         </div>
-        <BottomRow changeQuarter={changeQuarter} quarter={quarter}/>
+        <BottomRow changeQuarter={changeQuarter} quarter={quarter} changeDown={changeDown} down={down} />
       </section>
       <section className="buttons">
         <ScoreButtons isHome score={score} />
