@@ -6,11 +6,7 @@ const BottomRow = (props) => {
     <div className="bottomRow">
       <Down down={props.down} changeDown={props.changeDown} />
       <ToGo toGo={props.toGo} changeToGo={props.changeToGo} />
-      {/* <div className="ballOn">
-        <h3 className="ballOn__title">Ball on</h3>
-        <div className="ballOn__value">21</div>
-      </div> */}
-      <BallOn ballOn={props.ballOn} changeBallOn={props.changeBallOn} />
+      <BallOn ballOn={props.ballOn} changeBallOn={props.changeBallOn} fieldSide={props.fieldSide} toggleFieldSide={props.toggleFieldSide} />
       <Quarter quarter={props.quarter} changeQuarter={props.changeQuarter} />
     </div>
   );
@@ -59,14 +55,15 @@ function ToGo(props){
 }
 
 function BallOn(props){
-  const { ballOn, changeBallOn } = props
+  const { ballOn, changeBallOn, fieldSide, toggleFieldSide } = props
   return (
     <div className="ballOn">
       <h3 className="ballOn__title">Ball On</h3>
-      <div className="ballOn__value">{ballOn}</div>
+  <div className="ballOn__value">{ballOn + fieldSide}</div>
       <div className="ballOn__buttons">
         <button className="ballOn__up" onClick={() => changeBallOn(true)}>+</button>
         <button className="ballOn__ballOn" onClick={() => changeBallOn(false)}>-</button>
+        <button className="field__side" onClick={toggleFieldSide}>Toggle Side</button>
       </div>
     </div>
   )

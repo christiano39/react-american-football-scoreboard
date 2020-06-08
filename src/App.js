@@ -13,6 +13,7 @@ function App() {
   const [down, setDown] = useState(1)
   const [toGo, setToGo] = useState(10)
   const [ballOn, setBallOn] = useState(20)
+  const [fieldSide, setFieldSide] = useState('<')
   const homeTeam = "Colts"
   const awayTeam = "Broncos"
 
@@ -47,6 +48,15 @@ function App() {
       setBallOn(ballOn - 1)
     }
   }
+  const toggleFieldSide = () => {
+    if (fieldSide === '<'){
+      setFieldSide('>')
+    }else if (fieldSide === '>'){
+      setFieldSide('')
+    }else{
+      setFieldSide('<')
+    }
+  }
 
   return (
     <div className="container">
@@ -56,7 +66,14 @@ function App() {
           <Timer />
           <TeamName isHome={false} name={awayTeam} homeScore={homeScore} awayScore={awayScore} />
         </div>
-        <BottomRow changeQuarter={changeQuarter} quarter={quarter} changeDown={changeDown} down={down} toGo={toGo} changeToGo={changeToGo} ballOn={ballOn} changeBallOn={changeBallOn}/>
+        <BottomRow 
+          changeQuarter={changeQuarter} 
+          quarter={quarter} changeDown={changeDown} 
+          down={down} toGo={toGo} changeToGo={changeToGo} 
+          ballOn={ballOn} changeBallOn={changeBallOn} 
+          fieldSide={fieldSide} 
+          toggleFieldSide={toggleFieldSide}
+        />
       </section>
       <section className="buttons">
         <ScoreButtons isHome score={score} />
