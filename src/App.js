@@ -9,14 +9,20 @@ function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
   const [homeScore, setHomeScore] = useState(0)
   const [awayScore, setAwayScore] = useState(0)
+  const [quarter, setQuarter] = useState(1)
   const homeTeam = "Colts"
   const awayTeam = "Broncos"
 
-  const touchdown = (isHome, e) => {
-    isHome ? setHomeScore(homeScore + 7) : setAwayScore(awayScore + 7)
+  const score = (isHome, amount, e) => {
+    isHome ? setHomeScore(homeScore + amount) : setAwayScore(awayScore + amount)
   }
-  const fieldGoal = (isHome, e) => {
-    isHome ? setHomeScore(homeScore + 3) : setAwayScore(awayScore + 3)
+  const changeQuarter = (bool) => {
+    // bool ? setQuarter(quarter + 1) : setQuarter(quarter - 1)
+    if (bool && quarter < 4){
+      setQuarter(quarter + 1)
+    }else if (!bool && quarter > 1){
+      setQuarter(quarter - 1)
+    }
   }
 
   return (
@@ -27,11 +33,11 @@ function App() {
           <Timer />
           <TeamName isHome={false} name={awayTeam} homeScore={homeScore} awayScore={awayScore} />
         </div>
-        <BottomRow />
+        <BottomRow changeQuarter={changeQuarter} quarter={quarter}/>
       </section>
       <section className="buttons">
-        <Buttons isHome touchdown={touchdown} fieldGoal={fieldGoal} />
-        <Buttons isHome={false} touchdown={touchdown} fieldGoal={fieldGoal} />
+        <ScoreButtons isHome score={score} />
+        <ScoreButtons isHome={false} score={score} />
       </section>
     </div>
   )
@@ -48,13 +54,13 @@ function TeamName(props){
   )
 }
 
-function Buttons(props){
-  const { isHome, touchdown, fieldGoal } = props
+function ScoreButtons(props){
+  const { isHome, score } = props
   const prefix = isHome ? 'home' : 'away'
   return (
     <div className={prefix + 'Buttons'}>
-      <button className={prefix + "Buttons__touchdown"} onClick={() => touchdown(props.isHome)}>{prefix.toUpperCase()} Touchdown</button>
-      <button className={prefix + "Buttons__fieldGoal"} onClick={() => fieldGoal(props.isHome)}>{prefix.toUpperCase()} Field Goal</button>
+      <button className={prefix + "Buttons__touchdown"} onClick={() => score(isHome, 7)}>{prefix.toUpperCase()} Touchdown</button>
+      <button className={prefix + "Buttons__fieldGoal"} onClick={() => score(isHome, 3)}>{prefix.toUpperCase()} Field Goal</button>
     </div>
   )
 }
