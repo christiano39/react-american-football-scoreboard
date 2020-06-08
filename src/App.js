@@ -9,6 +9,8 @@ function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
   const [homeScore, setHomeScore] = useState(0)
   const [awayScore, setAwayScore] = useState(0)
+  const homeTeam = "Colts"
+  const awayTeam = "Broncos"
 
   const touchdown = (isHome, e) => {
     isHome ? setHomeScore(homeScore + 7) : setAwayScore(awayScore + 7)
@@ -21,9 +23,9 @@ function App() {
     <div className="container">
       <section className="scoreboard">
         <div className="topRow">
-          <TeamName isHome name="Lions" homeScore={homeScore} awayScore={awayScore} />
-          <div className="timer">00:03</div>
-          <TeamName isHome={false} name="Tigers" homeScore={homeScore} awayScore={awayScore} />
+          <TeamName isHome name={homeTeam} homeScore={homeScore} awayScore={awayScore} />
+          <Timer />
+          <TeamName isHome={false} name={awayTeam} homeScore={homeScore} awayScore={awayScore} />
         </div>
         <BottomRow />
       </section>
@@ -55,6 +57,10 @@ function Buttons(props){
       <button className={prefix + "Buttons__fieldGoal"} onClick={() => fieldGoal(props.isHome)}>{prefix.toUpperCase()} Field Goal</button>
     </div>
   )
+}
+
+function Timer(){
+  return <div className="timer">00:03</div>
 }
 
 export default App;
