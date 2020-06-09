@@ -14,11 +14,11 @@ function App() {
   const [down, setDown] = useState(1)
   const [toGo, setToGo] = useState(10)
   const [ballOn, setBallOn] = useState(20)
-  const [fieldSide, setFieldSide] = useState('<')
+  const [fieldSide, setFieldSide] = useState('')
   const homeTeam = "Colts"
   const awayTeam = "Broncos"
 
-  const score = (isHome, amount, e) => {
+  const score = (isHome, amount) => {
     isHome ? setHomeScore(homeScore + amount) : setAwayScore(awayScore + amount)
   }
   const changeQuarter = (bool) => {
